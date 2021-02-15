@@ -7,7 +7,6 @@ import cv2 as cv
 import time
 import os
 import numpy as np
-from google.colab.patches import cv2_imshow
 
 
 class BaseTracker:
