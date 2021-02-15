@@ -7,6 +7,7 @@ import cv2 as cv
 import time
 import os
 import numpy as np
+from google.colab.patches import cv2_imshow
 
 
 class BaseTracker:
@@ -66,11 +67,8 @@ class BaseTracker:
             self.initialize_features()
 
         cap = cv.VideoCapture(videofilepath)
-        display_name = 'Display: ' + self.params.tracker_name
-        cv.namedWindow(display_name, cv.WINDOW_NORMAL | cv.WINDOW_KEEPRATIO)
-        cv.resizeWindow(display_name, 960, 720)
         success, frame = cap.read()
-        cv.imshow(display_name, frame)
+        cv2_imshow(frame)
         if success is not True:
             print("Read frame from {} failed.".format(videofilepath))
             exit(-1)
@@ -114,7 +112,7 @@ class BaseTracker:
                        font_color, 1)
 
             # Display the resulting frame
-            cv.imshow(display_name, frame_disp)
+            cv2_imshow(frame_disp)
             key = cv.waitKey(1)
             if key == ord('q'):
                 break
