@@ -80,7 +80,10 @@ class Segm(BaseTracker):
                                      state[0], state[1] + state[3] - 1])
 
             self.rotated_bbox = False
-
+        
+        print(state)
+        print(self.target_sz)
+        
         # Set search area
         self.target_scale = 1.0
         search_area = torch.prod(self.target_sz * self.params.search_area_scale).item()
