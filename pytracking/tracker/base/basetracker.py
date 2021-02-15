@@ -58,7 +58,6 @@ class BaseTracker:
 
     def track_videofile(self, videofilepath, optional_box=None):
         """Run track with a video file input."""
-        print(optional_box)
 
         assert os.path.isfile(videofilepath), "Invalid param {}".format(videofilepath)
         ", videofilepath must be a valid videofile"
@@ -74,8 +73,6 @@ class BaseTracker:
             print("Read frame from {} failed.".format(videofilepath))
             exit(-1)
         if optional_box is not None:
-            assert isinstance(optional_box, list, tuple)
-            assert len(optional_box) == 4, "valid box's foramt is [x,y,w,h]"
             self.initialize(frame, optional_box)
 
         while True:
