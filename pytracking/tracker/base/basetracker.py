@@ -73,6 +73,7 @@ class BaseTracker:
             print("Read frame from {} failed.".format(videofilepath))
             exit(-1)
         if optional_box is not None:
+            optional_box = [100, 100, 50, 50]
             print(optional_box)
             self.initialize(frame, optional_box)
 
