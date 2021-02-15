@@ -82,6 +82,7 @@ class Segm(BaseTracker):
             self.rotated_bbox = False
         
         print(state)
+        print(len(state))
         print(self.target_sz)
         
         # Set search area
