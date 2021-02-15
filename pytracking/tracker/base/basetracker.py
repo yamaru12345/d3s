@@ -76,18 +76,6 @@ class BaseTracker:
             assert isinstance(optional_box, list, tuple)
             assert len(optional_box) == 4, "valid box's foramt is [x,y,w,h]"
             self.initialize(frame, optional_box)
-        else:
-            while True:
-                # cv.waitKey()
-                frame_disp = frame.copy()
-
-                cv.putText(frame_disp, 'Select target ROI and press ENTER', (20, 30), cv.FONT_HERSHEY_COMPLEX_SMALL,
-                           1.5, (0, 0, 0), 1)
-
-                x, y, w, h = cv.selectROI(display_name, frame_disp, fromCenter=False)
-                init_state = [x, y, w, h]
-                self.initialize(frame, init_state)
-                break
 
         while True:
             ret, frame = cap.read()
@@ -103,32 +91,9 @@ class BaseTracker:
             cv.rectangle(frame_disp, (state[0], state[1]), (state[2] + state[0], state[3] + state[1]),
                          (0, 255, 0), 5)
 
-            font_color = (0, 0, 0)
-            cv.putText(frame_disp, 'Tracking!', (20, 30), cv.FONT_HERSHEY_COMPLEX_SMALL, 1,
-                       font_color, 1)
-            cv.putText(frame_disp, 'Press r to reset', (20, 55), cv.FONT_HERSHEY_COMPLEX_SMALL, 1,
-                       font_color, 1)
-            cv.putText(frame_disp, 'Press q to quit', (20, 80), cv.FONT_HERSHEY_COMPLEX_SMALL, 1,
-                       font_color, 1)
-
             # Display the resulting frame
             plt.imshow(frame_disp)
             plt.show()
-            key = cv.waitKey(1)
-            if key == ord('q'):
-                break
-            elif key == ord('r'):
-                ret, frame = cap.read()
-                frame_disp = frame.copy()
-
-                cv.putText(frame_disp, 'Select target ROI and press ENTER', (20, 30), cv.FONT_HERSHEY_COMPLEX_SMALL, 1.5,
-                           (0, 0, 0), 1)
-
-                plt.imshow(frame_disp)
-                plt.show()
-                x, y, w, h = cv.selectROI(display_name, frame_disp, fromCenter=False)
-                init_state = [x, y, w, h]
-                self.initialize(frame, init_state)
 
         # When everything done, release the capture
         cap.release()
