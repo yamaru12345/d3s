@@ -7,8 +7,8 @@ def parameters():
     params = TrackerParams()
 
     # These are usually set from outside
-    params.debug = 0                     # Debug level
-    params.visualization = False            # Do visualization
+    params.debug = 1                     # Debug level
+    params.visualization = True           # Do visualization
 
     # Use GPU or not (IoUNet requires this to be True)
     params.use_gpu = True
