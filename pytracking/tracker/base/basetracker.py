@@ -67,7 +67,8 @@ class BaseTracker:
 
         cap = cv.VideoCapture(videofilepath)
         success, frame = cap.read()
-        cv2_imshow(frame)
+        plt.imshow(frame)
+        plt.show()
         if success is not True:
             print("Read frame from {} failed.".format(videofilepath))
             exit(-1)
@@ -111,7 +112,8 @@ class BaseTracker:
                        font_color, 1)
 
             # Display the resulting frame
-            cv2_imshow(frame_disp)
+            plt.imshow(frame_disp)
+            plt.show()
             key = cv.waitKey(1)
             if key == ord('q'):
                 break
@@ -122,7 +124,8 @@ class BaseTracker:
                 cv.putText(frame_disp, 'Select target ROI and press ENTER', (20, 30), cv.FONT_HERSHEY_COMPLEX_SMALL, 1.5,
                            (0, 0, 0), 1)
 
-                cv.imshow(display_name, frame_disp)
+                plt.imshow(frame_disp)
+                plt.show()
                 x, y, w, h = cv.selectROI(display_name, frame_disp, fromCenter=False)
                 init_state = [x, y, w, h]
                 self.initialize(frame, init_state)
