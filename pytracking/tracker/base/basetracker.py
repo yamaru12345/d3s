@@ -58,6 +58,7 @@ class BaseTracker:
 
     def track_videofile(self, videofilepath, optional_box=None):
         """Run track with a video file input."""
+        print(optional_box)
 
         assert os.path.isfile(videofilepath), "Invalid param {}".format(videofilepath)
         ", videofilepath must be a valid videofile"
